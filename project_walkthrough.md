@@ -147,3 +147,59 @@ To further improve the model:
 2. **More epochs with GPU**: Train `yolov8s` for 50-100 epochs at 640px on a GPU.
 
 3. **More data**: Add more disease images to improve generalization.
+
+
+## Setup Python env
+```bash
+python -m venv .venv
+
+# Activate environment
+# Windows
+.\.venv\Scripts\Activate
+
+```
+
+## Data Preparation
+```bash
+python 02_prepare_dataset.py
+```
+
+## Train Model
+```bash
+python 03_train.py --model n --epochs 5 --imgsz 320 --batch 8
+```
+
+## Run app.py
+```bash
+python -m uvicorn app:app --host 0.0.0.0 --port 8000
+```
+
+## Test app.py
+```bash
+python -c "import requests, json; r = requests.post('http://localhost:8000/predict', files={'file': ('green_mold.jpg', open(r'.\datasets\trichoderma\IMG20230519140627_01.jpg', 'rb'), 'image/jpeg')}); print(json.dumps(r.json(), indent=2))"
+
+
+#Ouput:-
+{
+  "status": "infected",
+  "detections": [
+    {
+      "class": "green_mold",
+      "confidence": 0.3921,
+      "bbox": [
+        0.0,
+        0.0,
+        1080.0,
+        1917.09
+      ]
+    }
+  ],
+  "inference_time_ms": 161.22,
+  "image_size": {
+    "width": 1080,
+    "height": 1920
+  },
+  "filename": "green_mold.jpg"
+}
+
+```
