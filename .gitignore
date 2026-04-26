@@ -34,6 +34,7 @@ pip-delete-this-directory.txt
 
 # Datasets (Large files, should not be in git)
 datasets/
+Doc/
 
 # YOLOv8 / Ultralytics
 runs/
