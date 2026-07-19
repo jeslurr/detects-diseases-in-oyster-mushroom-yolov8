@@ -54,3 +54,14 @@ Thumbs.db
 # Project Specific
 inference_results/
 temp/
+
+# Backend persistence (created at runtime)
+oyster.db
+outputs/*.jpg
+outputs/*.png
+outputs/*.db
+
+# Frontend
+Frontend/node_modules/
+Frontend/.expo/
+Frontend/dist/
